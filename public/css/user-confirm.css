@@ -1,0 +1,18 @@
+.arg-item {
+    text-align: center;
+    margin-top:15px;
+    margin-bottom:20px;
+}
+
+.img-icon{
+    width:50px;
+}
+
+
+.ballot-item{
+    background-image: url(/images/svg/flech.svg) ;
+}
+
+.vote-info{
+    font-size:0.8em;
+}

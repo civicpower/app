@@ -1,0 +1,92 @@
+#div_countdown{
+}
+#soon_countdouwn{
+    padding-top:10px;
+    padding-bottom:10px;
+}
+
+
+
+
+.clockdiv{
+	font-family: sans-serif;
+	color: #555555;
+	display: block;
+    margin: 15px auto 0;
+	font-weight: 100;
+	text-align: center;
+	font-size: 1em;
+}
+
+.clockdiv > div{
+	padding: 6px;
+	border-radius: 10px;
+	background: #eeeeee;
+	display: inline-block;
+}
+
+.clockdiv div > span{
+	padding: 4px 16px;
+	border-radius: 7px;
+	background: #ffffff;
+	display: inline-block;
+}
+
+.clockdiv .smalltext{
+	padding-top: 5px;
+	font-size: 0.8em;
+}
+#nb_participation_total{
+    min-width: 80px;
+}
+
+#div_participants{
+	margin-left: 40px;
+}
+.countdown_title_end{
+}
+
+@media (max-width: 486px) {
+	.div_countdown_outer{
+		padding:10px;
+	}
+	#clockdiv{
+		zoom:0.7;
+	}
+	#clockdiv #div_participants{
+		margin-left:30px;
+	}
+}
+@media (max-width: 350px) {
+	.div_countdown_outer{
+		padding:5px;
+	}
+	#clockdiv{
+		zoom:0.6;
+	}
+	#clockdiv #div_participants{
+		margin-left:20px;
+	}
+}
+@media (max-width: 300px) {
+	.div_countdown_outer{
+		padding:2px;
+	}
+	#clockdiv{
+		zoom:0.5;
+	}
+	#clockdiv #div_participants{
+		margin-left:5px;
+	}
+}
+@media (max-width: 250px) {
+	.div_countdown_outer{
+		padding:0px;
+	}
+	#clockdiv{
+		zoom:0.4;
+	}
+	#clockdiv #div_participants{
+		margin-left:1px;
+	}
+}

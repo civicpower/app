@@ -1,0 +1,9 @@
+<?php
+project_css_js($fw);
+$fw->include_css('user-email');
+$fw->include_js('user-email');
+$fw->set_canonical('/user-email');
+$fw->smarty->assign('nobg',true);
+$fw->smarty->display('user-email.tpl');
+$fw->go();
+?>

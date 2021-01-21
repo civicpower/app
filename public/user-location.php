@@ -1,0 +1,10 @@
+<?php
+project_css_js($fw);
+$fw->include_css('user-location');
+$fw->include_js('user-location');
+$fw->include_css('label-placeholder');
+$fw->set_canonical('/user-location');
+$fw->smarty->assign('nobg',true);
+$fw->smarty->display('user-location.tpl');
+$fw->go();
+?>

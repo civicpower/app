@@ -1,0 +1,10 @@
+<?php
+project_css_js($fw);
+$fw->include_css('ballot-list');
+$fw->include_js('ballot-list');
+$fw->set_canonical('/ballot-list');
+$fw->smarty->assign('menu_consultations',true);
+$fw->smarty->assign('list_mode',"ballot");
+$fw->smarty->display('ballot-list.tpl');
+$fw->go();
+?>

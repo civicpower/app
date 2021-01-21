@@ -1,0 +1,39 @@
+
+.div-votez{
+    font-weight:bold;
+    font-size:1.5em;
+}
+.div-votez2{
+    font-size:1.5em;
+}
+.div-environnement{
+    font-size:1.5em;
+}
+.btn-img-connect{
+    width:100%;
+    max-width:350px;
+}
+.div-ou{
+    font-weight:bold;
+    font-size:1.5em;
+}
+
+
+#custom-yes
+{
+    display:none;
+}
+
+.valign-center{
+    align-items: center;
+    flex-direction: column;
+    display: flex;
+    justify-content: center;
+}
+
+
+.link-lost-password{
+    color:#999999;
+    font-size:0.8em;
+    text-decoration: none;
+}

@@ -1,0 +1,9 @@
+<?php
+project_css_js($fw);
+$fw->include_css('user-address');
+$fw->include_css('label-placeholder');
+$fw->include_js('user-address');
+$fw->set_canonical('/user-address');
+$fw->smarty->display('user-address.tpl');
+$fw->go();
+?>

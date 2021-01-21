@@ -1,0 +1,10 @@
+<?php
+project_css_js($fw);
+$fw->include_css('user-edit');
+$fw->include_css('label-placeholder');
+$fw->include_js('user-edit');
+$fw->set_canonical('/user-edit');
+$fw->smarty->assign('nobg',true);
+$fw->smarty->display('user-edit.tpl');
+$fw->go();
+?>

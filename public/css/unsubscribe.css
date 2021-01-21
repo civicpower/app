@@ -1,0 +1,25 @@
+.unsubscribe-item{
+    width: 100%;
+    max-width: 500px;
+    margin: auto;
+    display: inline-block;
+    border: 1px solid #ccc;
+    margin-top: 10px;
+    padding: 10px;
+    border-radius: 5px;
+    text-align: left;
+}
+.unsubscribe-item:hover {
+    border-color: #ababab;
+    background-color: #ececec;
+}
+.unsubscribe-item:active {
+    border-color: #608db5;
+    background-color: #e2effa;
+}
+.unsubscribe-item input{
+    margin-bottom: 20px;
+    float: left;
+    margin-right: 10px;
+    zoom: 1.5;
+}

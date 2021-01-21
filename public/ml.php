@@ -1,0 +1,9 @@
+<?php
+project_css_js($fw);
+$fw->include_css('ml');
+$fw->include_js('ml');
+$fw->set_canonical('/ml');
+$fw->smarty->assign('shortcode',grequest("shortcode"));
+$fw->smarty->display('ml.tpl');
+$fw->go();
+?>

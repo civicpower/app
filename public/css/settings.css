@@ -1,0 +1,44 @@
+.privacy-text{
+    text-align: justify;
+}
+#form_user_edit input.form-control{
+    background-color: transparent;
+    border:medium none;
+    font-weight: bold;
+}
+#form_user_edit .mx-auto{
+    max-width: 100%;
+}
+
+
+.form-label-group a.cp_link_13{
+    position: absolute;
+    right: 0;
+    top: 0px;
+    padding: 7px 10px 17px 20px;
+}
+.form-label-group :disabled{
+    background-color: #FFFFFF;
+    color:#000!important;
+}
+
+#cb_membership{
+    vertical-align: -4px;
+    zoom: 1.8;
+    vertical-align: top;
+}
+label[for='cb_membership']{
+    padding: 0px 20px;
+    cursor: pointer;
+    margin-bottom: 0;
+    max-width: 90%;
+}
+label[for='cb_membership']:hover{
+    text-decoration: underline;
+    background-color: #EEE;
+    color:#000!important;
+}
+.form-label-membership{
+    border: 1px solid #ced4da;
+    border-radius: .25rem;
+}

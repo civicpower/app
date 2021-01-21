@@ -1,0 +1,51 @@
+#box-confirm{
+    display: none;
+}
+#input_phone_mobile{
+    font-size: 1.2em;
+    font-weight: bold;
+    text-align: center;
+}
+#input_phone_mobile::-webkit-input-placeholder { /* WebKit, Blink, Edge */
+    color:    #CCC;
+}
+#input_phone_mobile:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+   color:    #CCC;
+   opacity:  1;
+}
+#input_phone_mobile::-moz-placeholder { /* Mozilla Firefox 19+ */
+   color:    #CCC;
+   opacity:  1;
+}
+#input_phone_mobile:-ms-input-placeholder { /* Internet Explorer 10-11 */
+   color:    #CCC;
+}
+#input_phone_mobile::-ms-input-placeholder { /* Microsoft Edge */
+   color:    #CCC;
+}
+
+#input_phone_mobile::placeholder { /* Most modern browsers support this now. */
+   color:    #CCC;
+}
+
+#span_code_prefix{
+    font-size: 1.5em;
+}
+
+#input_email{
+    margin:auto;
+    text-align: center;
+    font-size: 1.2em;
+}
+.link-change{
+    text-decoration: underline;
+    cursor:pointer;
+}
+
+#div-outer-slide{
+}
+
+#form_subscribe{
+    max-width: 500px;
+    margin: auto;
+}

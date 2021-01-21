@@ -1,0 +1,188 @@
+.cp_text_10{
+    font-weight: 400!important;
+    font-size: 10px!important;
+    color:#262626!important;
+}
+.cp_text_10_bold{
+    font-weight: 700!important;
+    font-size: 10px!important;
+    color:#262626!important;
+}
+.cp_text_10_bold_maj{
+    font-weight: 700!important;
+    font-size: 10px!important;
+    color:#262626!important;
+    text-transform: uppercase!important;
+}
+
+.cp_text_11{
+    font-weight: 400!important;
+    font-size: 11px!important;
+    color:#78787A!important;
+}
+
+.cp_text_12{
+    font-weight: 400!important;
+    font-size: 12px!important;
+    color:#78787a!important;
+}
+
+.cp_text_13{
+    font-weight: 400!important;
+    font-size: 13px!important;
+    color:#262626!important;
+}
+
+.cp_text_13_bold{
+    font-weight: 700!important;
+    font-size: 13px!important;
+    color:#262626!important;
+}
+
+.cp_link_13{
+    font-weight: 400!important;
+    font-size: 13px!important;
+    color:#4054b2!important;
+}
+
+.cp_text_13_bold_roll{
+    font-weight: 700!important;
+    font-size: 14px!important;
+    color:#4054b2!important;
+}
+
+.cp_text_14_bold_maj{
+    font-weight: 700!important;
+    font-size: 14px!important;
+    color:#262626!important;
+    text-transform: uppercase!important;
+}
+
+.cp_text_nav{
+    font-weight: 700!important;
+    font-size: 13px!important;
+    color:#262626!important;
+}
+
+.cp_text_14_bold{
+    font-weight: 700!important;
+    font-size: 14px!important;
+    color:#262626!important;
+}
+.cp_text_14_bold_white{
+    font-weight: 700!important;
+    font-size: 14px!important;
+    color:#FFFFFF!important;
+}
+
+.cp_text_14{
+    font-weight: 400!important;
+    font-size: 14px!important;
+    color:#262626!important;
+}
+
+.cp_text_16_bold{
+    font-weight: 700!important;
+    font-size: 16px!important;
+    color:#262626!important;
+}
+.cp_text_18{
+    font-weight: 400!important;
+    font-size: 18px!important;
+    color:#262626!important;
+}
+.cp_text_18_bold{
+    font-weight: 400!important;
+    font-size: 18px!important;
+    color:#262626!important;
+}
+
+.cp_text_24_bold{
+    font-weight: 700!important;
+    font-size: 24px!important;
+    color:#262626!important;
+}
+
+.cp_button_red{
+    font-weight: 400!important;
+    font-size: 18px!important;
+    color:#FFFFFF!important;
+    border-radius: 100px !important;
+    min-width: 180px!important;
+    background-color: #FF0000!important;
+    border-color: transparent!important;
+    border-width: 2px!important;
+    display: inline-block!important;
+}
+.cp_button_red:hover {
+    color: #FFFFFF!important;
+    background-color: #ff6161!important;
+}
+
+.cp_button_blue{
+    font-weight: 400!important;
+    font-size: 16px!important;
+    color:#4054b2!important;
+    border-color: #4054b2!important;
+    border-width: 2px!important;
+    display: inline-block!important;
+    border-radius: 100px !important;
+    min-width: 180px!important;
+}
+.cp_button_blue:hover {
+    background-color: #4054b2!important;
+    color:#FFFFFF!important;
+}
+
+.bottom-footer{
+    font-weight: 400!important;
+    font-size:14px!important;
+    color:#262626!important;
+}
+
+@media (max-width: 768px) {
+    .bottom-footer {
+        font-weight: 400!important;
+        font-size: 12px!important;
+        color:#262626!important;
+    }
+}
+@media (max-width: 425px) {
+    .bottom-footer {
+        font-weight: 400!important;
+        font-size: 10px!important;
+        color:#262626!important;
+    }
+}
+
+
+.bgcolor-blue {
+    background-color: #4054b2!important;
+}
+.bottom-footer .footer-inner{
+    justify-content: space-between;
+    display: flex;
+    width: 100%;
+    padding: 0px 10px;
+}
+.bottom-footer .footer-inner .footer-side{
+    display: inline-block;
+}
+.bottom-footer .footer-inner .footer-copyright {
+    font-size: 0.9em;
+    line-height: 1.8em;
+}
+@media (max-width: 740px) {
+    .bottom-footer .footer-inner {
+        display: block;
+    }
+    .bottom-footer .footer-inner .footer-side{
+        display: block;
+        width: 100%;
+        text-align: center;
+    }
+    .bottom-footer .footer-inner .footer-copyright {
+    }
+}
+
+

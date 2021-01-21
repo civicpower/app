@@ -1,0 +1,32 @@
+.question_item{
+    padding:0px;
+}
+.option_list{
+    margin-top:10px;
+    padding: 0px 10px!important;
+}
+.option_item{
+    font-size: 1.4em;
+    max-width: 500px;
+    margin: 10px auto;
+    border:1px solid #999999;
+}
+button.btn[disabled]{
+    cursor:not-allowed;
+}
+.div_title_span{
+    padding:10px;
+    line-height: 33px;
+}
+.div_value_span{
+    color:#FFF;
+    padding:10px;
+    text-align:right;
+}
+
+.radius-left{
+    border-radius: 10px 0 0 10px;
+}
+.radius-right{
+    border-radius: 0 10px 10px 0 ;
+}

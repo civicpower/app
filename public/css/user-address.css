@@ -1,0 +1,18 @@
+input.form-control{
+    font-weight: bold;
+}
+#label_city{
+    margin-bottom: 0px;
+    font-size: 0.8rem;
+    margin-left: 0.7rem;
+    color: #777;
+}
+select#label_city{
+    font-weight: bold;
+}
+#div_city_id,#error_div{
+    display: none;
+}
+#select_city_id{
+    font-weight: bold;
+}

@@ -1,0 +1,191 @@
+################### Apache ###################
+
+# Init
+	<IfModule mod_rewrite.c>
+		RewriteEngine on
+	</IfModule>
+
+# Include the php conf on all pages
+	# https://stackoverflow.com/questions/9045445/auto-prepend-php-file-using-htaccess-relative-to-htaccess-file
+	php_value include_path "./:../:../../:../../../:../../../../"
+	#php_value include_path "../"
+	# https://stackoverflow.com/questions/9045445/auto-prepend-php-file-using-taccess-relative-to-htaccess-file
+	php_value auto_prepend_file inc/auto_prepend_file.php
+	#php_value auto_append_file auto_append_file.php
+
+# Force disable directory browsing
+	Options All -Indexes
+
+################### APP config ###################
+
+# check for PHP extension
+	RewriteCond %{REQUEST_FILENAME} !-f
+	RewriteCond %{REQUEST_FILENAME} !-d
+	RewriteCond %{DOCUMENT_ROOT}/$1.php -f
+	RewriteRule ^(.*)$ /$1.php [L]
+
+# shortcode ballot
+	RewriteCond %{REQUEST_FILENAME} !-f
+	RewriteCond %{REQUEST_FILENAME} !-d
+	RewriteRule ^(ML\-[a-zA-Z0-9]{9,11})$ /ml?shortcode=$1 [L]
+	RewriteRule ^(sms/[a-zA-Z0-9]{6,7})$ /sms?shortcode=$1 [L]
+	RewriteRule ^([a-zA-Z0-9]{6,7})$ /vote?shortcode=$1 [L]
+	RewriteRule ^([a-f0-9]{25,})$ /vote?ballot_token=$1 [L]
+	RewriteRule ^r/([a-zA-Z0-9]{6,7})$ /result?shortcode=$1 [L]
+	RewriteRule ^r/([a-f0-9]{25,})$ /result?ballot_token=$1 [L]
+
+# 404
+	#RewriteCond %{REQUEST_FILENAME} !-f
+	#RewriteCond %{REQUEST_FILENAME} !-d
+	#RewriteRule ^.*$ /404 [L]
+	ErrorDocument 401 /404.php
+	ErrorDocument 402 /404.php
+	ErrorDocument 403 /404.php
+	ErrorDocument 404 /404.php
+	ErrorDocument 500 /error.php
+	ErrorDocument 501 /error.php
+	ErrorDocument 502 /error.php
+	ErrorDocument 503 /error.php
+	ErrorDocument 504 /error.php
+
+################### Security ###################
+
+# Deny access to .htaccess
+	<Files .htaccess>
+		Order allow,deny
+		Deny from all
+	</Files>
+
+# Deny access to filenames starting with dot(.)
+	<FilesMatch "^\.">
+		Order allow,deny
+		Deny from all
+	</FilesMatch>
+
+# Deny Access to Backup and Source Files
+# These files may be left by some text/HTML editors (like Vi/Vim) and pose a great security danger if exposed to public.
+	<FilesMatch "(\.(bak|config|dist|fla|inc|ini|log|txt|psd|sh|sql|swp|tpl)|~)$">
+	    # Require all denied
+	</FilesMatch>
+
+# Avoid some files && folders
+	Redirect 301 /assets/ /
+	Redirect 301 /.git/ /
+	#Redirect 301 /html/ /
+	Redirect 301 /inc/ /
+	Redirect 301 /fw/ /
+	Redirect 301 /cache/ /
+	Redirect 301 /package-lock.json /
+	Redirect 301 /composer.lock /
+	Redirect 301 /composer.phar /
+	Redirect 301 /composer.json /
+	Redirect 301 /.htaccess~ /
+	Redirect 301 /.htaccess /
+	Redirect 301 .gitignore /
+	Redirect 301 .gitignore~ /
+
+# Permanently Redirect a Specific IP
+# Sometimes you want to create permanent redirect (301) when the request is coming from a particular IP. In other words, if someone from 123.45.67.8 visits the website, the visitor will be redirected to Google for example. All other visitors will be able to access the site.
+	#RewriteCond %{REMOTE_ADDR} ^123\.45\.67\.8$ [OR]
+	#RewriteCond %{REMOTE_ADDR} ^123\.110\.253\.195$
+	#RewriteRule ^(.*)$ http://google.com [L]
+
+# Trackback Spam
+# Denies obvious trackback spam. See Holy Shmoly! [403]
+	RewriteCond %{REQUEST_METHOD} =POST
+	RewriteCond %{HTTP_USER_AGENT} ^.*(opera|mozilla|firefox|msie|safari).*$ [NC]
+	RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /.+/trackback/?\ HTTP/ [NC]
+	RewriteRule .? - [F,NS,L]
+
+# Bogus Graphics Exploit
+# Denies obvious exploit using bogus graphics[403]
+	RewriteCond %{HTTP:Content-Disposition} \.php [NC]
+	RewriteCond %{HTTP:Content-Type} image/.+ [NC]
+	RewriteRule .? - [F,NS,L]
+
+# Protect against SQL Injection
+# @ https://wp-mix.com/protect-against-sql-injection/
+	<IfModule mod_rewrite.c>
+		RewriteCond %{QUERY_STRING} (eval\() [NC,OR]
+		RewriteCond %{QUERY_STRING} (javascript:)(.*)(;) [NC,OR]
+		RewriteCond %{QUERY_STRING} (base64_encode)(.*)(\() [NC,OR]
+		RewriteCond %{QUERY_STRING} (GLOBALS|REQUEST)(=|\[|%) [NC,OR]
+		RewriteCond %{QUERY_STRING} (<|%3C)(.*)script(.*)(>|%3) [NC,OR]
+		RewriteCond %{QUERY_STRING} (\\|\.\.\.|\.\./|~|`|<|>|\|) [NC,OR]
+		RewriteCond %{QUERY_STRING} mosConfig_[a-zA-Z_]{1,22}(=|%3D) [NC,OR]
+		RewriteCond %{QUERY_STRING} (boot\.ini|etc/passwd|self/environ) [NC,OR]
+		RewriteCond %{QUERY_STRING} (\'|\")(.*)(drop|exec|insert|md5|select|union) [NC]
+		RewriteRule .* - [F]
+	</IfModule>
+
+	# https://stackoverflow.com/questions/29887663/stop-sql-injection-through-htaccess
+	#####################################################    
+	# Script: htaccess Security                                                                 
+	#
+	# Version: 1.0                                                                                     
+	# 
+	#  ### Changelog ###                                                                        
+	#
+	# v1.0 - 2012-02-14                                                                            
+	#
+	#####################################################
+
+		# No web server version and indexes
+		#ServerSignature Off
+		#Options -Indexes
+
+		# Enable rewrite engine
+		#RewriteEngine On
+
+		# Block suspicious request methods
+		#RewriteCond %{REQUEST_METHOD} ^(HEAD|TRACE|DELETE|TRACK|DEBUG) [NC]
+
+		#RewriteRule ^(.*)$ - [F,L]
+
+		# Block WP timthumb hack
+		#RewriteCond %{REQUEST_URI} (timthumb\.php|phpthumb\.php|thumb\.php|thumbs\.php) [NC]
+
+		#RewriteRule . - [S=1]
+
+		# Block suspicious user agents and requests
+			RewriteCond %{HTTP_USER_AGENT} (libwww-perl|wget|python|nikto|curl|scan|java|winhttp|clshttp|loader) [NC,OR]
+			RewriteCond %{HTTP_USER_AGENT} (<|>|'|%0A|%0D|%27|%3C|%3E|%00) [NC,OR]
+			RewriteCond %{HTTP_USER_AGENT} (;|<|>|'|"|\)|\(|%0A|%0D|%22|%27|%28|%3C|%3E|%00).*(libwww-perl|wget|python|nikto|curl|scan|java|winhttp|HTTrack|clshttp|archiver|loader|email|harvest|extract|grab|miner) [NC,OR]
+			RewriteCond %{THE_REQUEST} \?\ HTTP/ [NC,OR]
+			RewriteCond %{THE_REQUEST} \/\*\ HTTP/ [NC,OR]
+			RewriteCond %{THE_REQUEST} etc/passwd [NC,OR]
+			RewriteCond %{THE_REQUEST} cgi-bin [NC,OR]
+			RewriteCond %{THE_REQUEST} (%0A|%0D) [NC,OR]
+
+		# Block MySQL injections, RFI, base64, etc.
+			RewriteCond %{QUERY_STRING} [a-zA-Z0-9_]=http:// [OR]
+			RewriteCond %{QUERY_STRING} [a-zA-Z0-9_]=(\.\.//?)+ [OR]
+			RewriteCond %{QUERY_STRING} [a-zA-Z0-9_]=/([a-z0-9_.]//?)+ [NC,OR]
+			RewriteCond %{QUERY_STRING} \=PHP[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12} [NC,OR]
+			RewriteCond %{QUERY_STRING} (\.\./|\.\.) [OR]
+			RewriteCond %{QUERY_STRING} ftp\: [NC,OR]
+			RewriteCond %{QUERY_STRING} http\: [NC,OR]
+			RewriteCond %{QUERY_STRING} https\: [NC,OR]
+			RewriteCond %{QUERY_STRING} \=\|w\| [NC,OR]
+			RewriteCond %{QUERY_STRING} ^(.*)/self/(.*)$ [NC,OR]
+			RewriteCond %{QUERY_STRING} ^(.*)cPath=http://(.*)$ [NC,OR]
+			RewriteCond %{QUERY_STRING} (\<|%3C).*script.*(\>|%3E) [NC,OR]
+			RewriteCond %{QUERY_STRING} (<|%3C)([^s]*s)+cript.*(>|%3E) [NC,OR]
+			RewriteCond %{QUERY_STRING} (\<|%3C).*iframe.*(\>|%3E) [NC,OR]
+			RewriteCond %{QUERY_STRING} (<|%3C)([^i]*i)+frame.*(>|%3E) [NC,OR]
+			RewriteCond %{QUERY_STRING} base64_encode.*\(.*\) [NC,OR]
+			RewriteCond %{QUERY_STRING} base64_(en|de)code[^(]*\([^)]*\) [NC,OR]
+			RewriteCond %{QUERY_STRING} GLOBALS(=|\[|\%[0-9A-Z]{0,2}) [OR]
+			RewriteCond %{QUERY_STRING} _REQUEST(=|\[|\%[0-9A-Z]{0,2}) [OR]
+			RewriteCond %{QUERY_STRING} ^.*(\[|\]|\(|\)|<|>).* [NC,OR]
+			RewriteCond %{QUERY_STRING} (NULL|OUTFILE|LOAD_FILE) [OR]
+			RewriteCond %{QUERY_STRING} (\./|\../|\.../)+(motd|etc|bin) [NC,OR]
+			RewriteCond %{QUERY_STRING} (localhost|loopback|127\.0\.0\.1) [NC,OR]
+			RewriteCond %{QUERY_STRING} (<|>|'|%0A|%0D|%27|%3C|%3E|%00) [NC,OR]
+			RewriteCond %{QUERY_STRING} concat[^\(]*\( [NC,OR]
+			RewriteCond %{QUERY_STRING} union([^s]*s)+elect [NC,OR]
+			RewriteCond %{QUERY_STRING} union([^a]*a)+ll([^s]*s)+elect [NC,OR]
+			RewriteCond %{QUERY_STRING} (;|<|>|'|"|\)|%0A|%0D|%22|%27|%3C|%3E|%00).*(/\*|union|select|insert|drop|delete|update|cast|create|char|convert|alter|declare|order|script|set|md5|benchmark|encode) [NC,OR]
+			RewriteCond %{QUERY_STRING} (sp_executesql) [NC]
+
+

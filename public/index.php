@@ -1,0 +1,9 @@
+<?php
+project_css_js($fw);
+$fw->include_css('index');
+$fw->include_js('index');
+$fw->set_canonical('');
+$fw->smarty->assign('splashscreen',true);
+$fw->smarty->display('index.tpl');
+$fw->go();
+?>

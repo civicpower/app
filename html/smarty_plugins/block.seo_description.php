@@ -1,0 +1,25 @@
+<?php
+
+function smarty_block_seo_description($params, $content, &$smarty, $open){
+	if(!$open){
+		$content = trim($content);
+		$content = explode("\n",$content);
+		$res = array();
+		$i = 0;
+		foreach($content as $k => $v){
+			$v = trim($v);
+			if(preg_match("~^[\-]+$~",$v)){
+				$i++;
+			}else{
+				$res[$i][] = $v;
+			}
+		}
+		foreach($res as $k => $v){
+			shuffle($v);
+			$res[$k] = array_shift($v);
+		}
+		$seo_description = implode(' - ',$res);
+		$smarty->seo_description = $seo_description;
+		$smarty->assign('seo_description',$seo_description);
+	}
+}

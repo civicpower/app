@@ -1,0 +1,103 @@
+.question_item{
+    padding:10px;
+    border-bottom:2px solid #c5c5c5;
+    border-left:5px solid #FFF;
+    border-radius: 5px;
+}
+.question_item:first-child {
+    border-top:2px solid #c5c5c5;
+}
+.option_list{
+    margin-top:10px;
+}
+.option_list.nb_option_2{
+    padding: 0px 10%;
+}
+
+.option_item{
+}
+
+button.btn[disabled]{
+    cursor:not-allowed;
+}
+.div_title_span{
+    background: #FFF;
+    padding:10px;
+}
+.div_value_span{
+    color:#FFF;
+    background: red;
+    padding:10px;
+}
+
+
+
+.btn.btn-option-vote.active{
+    background-image: url(/images/svg/cocheV.svg);
+    color: #555555;
+}
+.btn.btn-option-vote:hover{
+    background-color: #FFF;
+}
+.btn.btn-option-vote{
+    font-weight:bold;
+    background-image: url(/images/svg/coche.svg);
+    color: #999999;
+    background-repeat: no-repeat;
+    background-size: 45px;
+    background-position-x: 30px;
+    text-align: left;
+    padding-left: 110px;
+    border-radius: 0px;
+    outline: medium none;
+    min-height:50px;
+}
+.option_item.option-horizontal{
+    padding: 70px 0px 0px 0px;
+    text-align: center;
+    background-position-x: center;
+    min-height: 130px;
+    background-position-y: 15px;
+}
+.option_item .option_title{
+    cursor:pointer;
+}
+.box-404{
+    min-height:500px;
+}
+.img-icon-cp{
+    max-width: 80px;
+}
+
+.avatar-asker{
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    border: 3px solid #9996;
+}
+
+.question_item:not(.has_error) .question_error{
+    display:none;
+}
+
+
+
+
+.question_item.has_error{
+    border-left:5px solid #F00;
+    -webkit-animation: error_blink 1s infinite;  /* Safari 4+ */
+    -moz-animation: error_blink 1s infinite;  /* Fx 5+ */
+    -o-animation: error_blink 1s infinite;  /* Opera 12+ */
+    animation: error_blink 1s infinite;  /* IE 10+, Fx 29+ */
+}
+
+@-webkit-keyframes error_blink {
+  0%, 49% {
+    background-color: #ffffff;
+    border-left:5px solid #dd0000;
+  }
+  50%, 100% {
+    background-color: #fff8f8;
+    border-left:5px solid #F00;
+  }
+}

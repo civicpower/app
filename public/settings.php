@@ -1,0 +1,11 @@
+<?php
+project_css_js($fw);
+$fw->include_css('settings');
+$fw->include_js('user-edit');
+$fw->include_js('settings');
+$fw->include_css('label-placeholder');
+$fw->set_canonical('/settings');
+$fw->smarty->assign('menu_mon_compte',true);
+$fw->smarty->display('settings.tpl');
+$fw->go();
+?>

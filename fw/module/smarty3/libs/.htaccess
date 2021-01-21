@@ -1,0 +1,8 @@
+# Disable directory browsing
+	Options All -Indexes
+
+# Deny access to files with extensions .tpl
+	<FilesMatch "\.(tpl)$">
+		Order allow,deny
+		Deny from all
+	</FilesMatch>

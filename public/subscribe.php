@@ -1,0 +1,10 @@
+<?php
+project_css_js($fw);
+$fw->include_css('subscribe');
+$fw->include_js('subscribe');
+$fw->add_js('/vendor/intl-tel-input-17.0.0/build/js/intlTelInput.min.js');
+$fw->add_css('../vendor/intl-tel-input-17.0.0/build/css/intlTelInput.min.css');
+$fw->set_canonical('/subscribe');
+$fw->smarty->display('subscribe.tpl');
+$fw->go();
+?>

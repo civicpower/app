@@ -1,0 +1,9 @@
+#form_user_edit input.form-control{
+    font-weight: bold;
+}
+
+
+#form_user_edit{
+    max-width: 500px;
+    margin: auto;
+}
