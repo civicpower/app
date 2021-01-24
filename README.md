@@ -1,4 +1,4 @@
-# app.civicpower.io
+# app
 
 Chez Civicpower nous pensons que nous devons la transparence à nos utilisateurs.
 
