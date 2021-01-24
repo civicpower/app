@@ -3,11 +3,7 @@
 .project
 .DS_Store
 *.DS_Store
-#.htaccess
-.htaccess~
 .project
-#.gitignore
-.gitignore~
 tmp/*
 logs/*
 *.iml
@@ -17,4 +13,6 @@ cache/*
 update.sh*
 *~
 vendor/*
-config/*
+
+#.htaccess
+#.gitignore
