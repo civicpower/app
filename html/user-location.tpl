@@ -20,7 +20,7 @@
                             <select id="select_city_id" class="form-control">
                                 <option value="">Renseignez votre code postal ...</option>
                             </select>
-                            <div id="error_div" class="alert alert-danger">Le code postal renseigné est inconnu</div>
+                            <div id="error_div" class="alert alert-warning">Le code postal renseigné est inconnu</div>
                         </div>
                         <div class="text-center mb-3">
                             <button disabled="disabled" id="btn_validate" type="submit" class="btn cp_button_red">Valider</button>

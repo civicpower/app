@@ -1,4 +1,4 @@
-;(function ($, window, document, undefined) {
+;(function ($, window, document, _undefined) {
     $(document).ready(function () {
         check_user_logged(
             function (user_token) {
@@ -14,7 +14,7 @@
 
     function bind_btn_eye() {
         $(".btn-eye").on("click", function () {
-            var $input = $("#input_password");
+            var $input = $(this).closest(".div-password").find("input.input-pass");
             var len = $input.val().length;
             if ($input.attr("type") == "password") {
                 $input.attr("type", "text");
@@ -35,8 +35,10 @@
         });
         $("#form_password").on("submit", function (e) {
             var $input = $("#input_password");
+            var $input2 = $("#input_password2");
             var password = $input.val();
-            var check = cp_password_check(password);
+            var password2 = $input2.val();
+            var check = cp_password_check(password,password2);
             if (check.result === false) {
                 $("#div-error").text(check.error).slideDown("fast");
             } else {
@@ -45,7 +47,7 @@
                     "post",
                     {
                         token: user_token,
-                        password: password
+                        password: sha1(password)
                     },
                     function (jsone) {
                         if (jsone.status === "success") {

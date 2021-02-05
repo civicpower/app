@@ -8,7 +8,7 @@
     {include file="block-menu-user.tpl" }
     <div class="valign-center mh-vh">
         {include file="block-countdown2.tpl"}
-        <div id="div-create-account" class="text-center mt-2 mb- alert alert-warning" style="display: none">
+        <div id="div-create-account" class="text-center mt-2 mb- alert alert-primary" style="display: none">
             <div>
                 Pour pouvoir participer à cette consultation, vous devez créer un compte<br />ou vous connecter à votre compte civicpower
             </div>
@@ -18,14 +18,14 @@
             </div>
         </div>
         <div id="div-account-created" style="display:none;">
-            <div class="text-center">
+            <div class="text-center emptiable">
                 <img class="avatar-asker" data-bo="https://{$smarty.env.BO_URL}/uploads/pp/" src="https://{$smarty.env.BO_URL}/uploads/pp/default.png"/>
                 <div class="cp_text_14_bold" id="avatar-asker-name"></div>
             </div>
             <div class="small-box emptiable px-0">
-                <div id="ballot-not-started" class="mx-5 alert alert-danger text-center font-weight-bold d-none">Cette consultation n'est pas encore ouverte</div>
-                <div id="ballot-ended" class="mx-5 alert alert-danger text-center font-weight-bold d-none">Cette consultation est désormais close</div>
-                <div id="ballot-cannot-vote" class="mx-5 alert alert-danger text-center font-weight-bold d-none">Vous ne pouvez pas voter pour cette consultation</div>
+                <div id="ballot-not-started" class="mx-5 alert alert-warning text-center font-weight-bold d-none">Cette consultation n'est pas encore ouverte</div>
+                <div id="ballot-ended" class="mx-5 alert alert-warning text-center font-weight-bold d-none">Cette consultation est désormais close</div>
+                <div id="ballot-cannot-vote" class="mx-5 alert alert-warning text-center font-weight-bold d-none">Vous ne pouvez pas voter pour cette consultation</div>
 
 
                 <h1 id="ballot_title" class="mt-1 px-5 cp_text_14_bold_maj text-center"></h1>
@@ -35,11 +35,11 @@
             </div>
             <div class="small-box emptiable px-0">
                 <form id="form_ballot">
-                    <div id="msg_already_voted" class="text-center alert alert-danger mt-4"></div>
+                    <div id="msg_already_voted" class="text-center alert alert-warning mt-4"></div>
                     <div id="question_list"></div>
                 </form>
                 <div class="mt-4 text-center">
-                    <button id="btn-confirm-vote" class="btn cp_button_red" disabled="disabled">Voter</button>
+                    <button id="btn-confirm-vote" class="btn cp_button_red" {*disabled="disabled"*}>Voter</button>
                 </div>
                 <div class="mt-4 text-center" id="div_see_results_live">
                     <a class="ballot_token_param btn-retour-vote btn btn-light btn-civicpower">Voir la tendance des votes</a>
@@ -63,13 +63,13 @@
     <div class="question_item mt-1 text-center">
         <div class="px-4 question_title cp_text_16_bold">question_title</div>
         <div class="question_description mt-1  px-5 text-center cp_text_14">question_description</div>
-        <div class="question_qcm d-none alert alert-info">
+        <div class="question_qcm d-none alert alert-primary">
             Vote à préférences multiples
             <span class="option-strict d-none">strict</span>
             <span class="option-max d-none">max</span> :
-            <i>Choisir <span class="option-until dnone">jusqu'à</span> <span class="nb-choice">0</span> options</i>
+            <i>Choisir <span class="option-until d-none">jusqu'à</span> <span class="nb-choice">0</span> options</i>
         </div>
-        <div class="question_error alert alert-danger">
+        <div class="question_error alert alert-warning">
             Votre réponse comporte des erreurs,<br>
             veuillez vérifier le nombre maximum de réponses prévues.
         </div>

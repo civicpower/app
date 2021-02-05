@@ -1,4 +1,4 @@
-;(function ($, window, document, undefined) {
+;(function ($, window, document, _undefined) {
     var subscribe_mode = "email";
     $(document).ready(function () {
         first_focus();
@@ -116,6 +116,7 @@
                             $("#box-subscribe").slideUp("slow");
                             $("#box-confirm").slideDown("slow", function () {
                                 $("#input_phone_code").focus();
+                                bind_resend_code_reset();
                             });
                         }
                     } else {

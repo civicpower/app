@@ -3,7 +3,10 @@
 .project
 .DS_Store
 *.DS_Store
+#.htaccess
+.htaccess~
 .project
+#.gitignore
 tmp/*
 logs/*
 *.iml
@@ -11,8 +14,6 @@ logs/*
 cache/*
 *.xml
 update.sh*
+composer.lock
+composer.phar
 *~
-vendor/*
-
-#.htaccess
-#.gitignore

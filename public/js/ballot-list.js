@@ -1,4 +1,4 @@
-;(function ($, window, document, undefined) {
+;(function ($, window, document, _undefined) {
     $(document).ready(function () {
         check_user_logged(
             function (user_token, jsone) {
@@ -35,7 +35,7 @@
                 route = "result";
             }else{
                 if(local_list_mode("vote")){
-                    if($item.attr("data-ballot_running")==1){
+                    if($item.attr("data-ballot_running")===1){
                         route = "vote";
                     }else{
                         route = "result";
@@ -44,7 +44,7 @@
                     route = "vote";
                 }
             }
-            if(typeof ballot_shortcode == "string" && ballot_shortcode.length>0 && route == "vote") {
+            if(typeof ballot_shortcode == "string" && ballot_shortcode.length>0 && route === "vote") {
                 window.location.replace("/" + String(ballot_shortcode));
             }else{
                 window.location.replace("/" + String(route) + "?ballot_token=" + String(encodeURIComponent(ballot_token)));
@@ -56,7 +56,7 @@
     function get_ballot_list(user_token,jsone) {
 
         var mode = local_list_mode();
-        var data ;
+        var data = {};
         if(mode === "ballot"){
             data = {
                 not_finish : true,
@@ -83,8 +83,8 @@
             "get_ballot_list",
             "post",
             data,
-            function (jsone) {
-                write_ballot_list(jsone.data, mode);
+            function (jsone2) {
+                write_ballot_list(jsone2.data, mode);
             }
         );
     }
@@ -104,7 +104,7 @@
                 $item.attr("data-ballot_running",data[i].ballot_running);
                 $item.attr("data-ballot_started",data[i].ballot_started);
                 $item.attr("data-ballot_finished",data[i].ballot_finished);
-                $item.find(".img-asker").attr("src", "https://"+String(BO_URL)+"/uploads/pp/" + String(data[i].asker_token) + ".png?rand="+String(Math.random()*9999)+"");
+                $item.find(".img-asker").attr("src", "https://"+String(BO_URL)+"/uploads/pp/" + String(data[i].asker_token) + ".png?rand="+String(Date.now())+"");
                 $item.attr("data-ballot_token", data[i].ballot_token);
                 $item.attr("data-ballot_shortcode", data[i].ballot_shortcode);
                 $item.find(".ballot-asker_name").text(data[i].asker_name);

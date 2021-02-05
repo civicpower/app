@@ -8,22 +8,26 @@
             {include file="block-user-steps.tpl"}
             <div class="valign-center mh-vh">
                 <div class="mb-4 cp_text_14_bold mx-auto  text-center">
-                    Activez votre compte Civicpower<br/>
-                    choisissez un mot de passe
+                    Sécurisons votre compte<br/>
+                    par un mot de passe
                 </div>
                 <div class="mb-4 cp_text_13 mx-auto  text-center">
-                    Votre mot de passe doit contenir au minimum {$smarty.const.PASSWORD_MIN_LENGTH} caractères<br/>
-                    au moins une lettre minuscule, une lettre majuscule, un caractère spécial et un chiffre.
+                    Utilisez au moins huit caractères avec des lettres, des chiffres et des symboles
                 </div>
                 <form method="post" id="form_password">
                     <div class="mt-3 row">
                         <div class="form-label-group col-12 div-password">
-                            <button type="button" class="btn btn-light btn-eye"></button>
-                            <input type="password" id="input_password" class="text-center form-control" placeholder="Mot de passe" required="required" autofocus="autofocus" />
+                            <button tabindex="-1" type="button" class="btn btn-light btn-eye"></button>
+                            <input type="password" id="input_password" class="input-pass text-center form-control" placeholder="Mot de passe" required="required" autofocus="autofocus" />
                             <label for="input_password" class="text-center">Mot de passe</label>
                         </div>
+                        <div class="form-label-group col-12 div-password">
+                            <button tabindex="-1" type="button" class="btn btn-light btn-eye"></button>
+                            <input type="password" id="input_password2" class="input-pass text-center form-control" placeholder="Répétez le Mot de passe" required="required" autofocus="autofocus" />
+                            <label for="input_password2" class="text-center">Répétez le Mot de passe</label>
+                        </div>
                         <div id="div-error-outer" class="col-12">
-                            <div id="div-error" class="py-1 alert-danger alert"></div>
+                            <div id="div-error" class="py-1 alert-warning alert text-center"></div>
                         </div>
                         <div class="text-center mb-3 col-12">
                             <button id="btn_validate" type="submit" class="btn cp_button_red">Valider</button>

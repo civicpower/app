@@ -32,6 +32,7 @@
 {if !is_null($HTML_META_OG_IMAGE)}
 {capture assign=og_image_url_start}{*http://{$smarty.env.SITE_URL}*}{/capture}
 <meta property="og:image" content="{$og_image_url_start}{$og_image_url_start|str_replace:"":$HTML_META_OG_IMAGE|html_entity_decode}" />
+<meta property="twitter:image" content="{$og_image_url_start}{$og_image_url_start|str_replace:"":$HTML_META_OG_IMAGE|html_entity_decode}"/>
 {/if}
 
 {if $HTML_META_KEYWORDS}

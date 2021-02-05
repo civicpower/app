@@ -1,4 +1,4 @@
-;(function ($, window, document, undefined) {
+;(function ($, window, document, _undefined) {
     var iti = null;
     var subscribe_mode = "phone";
     $(document).ready(function () {
@@ -178,6 +178,7 @@
                                 $("#box-subscribe").slideUp("slow");
                                 $("#box-confirm").slideDown("slow", function () {
                                     $("#input_phone_code").focus();
+                                    bind_resend_code_reset();
                                 });
                             }
                         } else {
@@ -217,6 +218,7 @@
                                 $("#box-subscribe").slideUp("slow");
                                 $("#box-confirm").slideDown("slow", function () {
                                     $("#input_phone_code").focus();
+                                    bind_resend_code_reset();
                                 });
                             }
                         } else {

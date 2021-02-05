@@ -18,10 +18,13 @@ button.btn[disabled]{
     padding:10px;
     line-height: 33px;
 }
-.div_value_span{
+.div_value_span,.div_value_span2{
     color:#FFF;
-    padding:10px;
+    padding:10px 7px!important;
     text-align:right;
+}
+.div_value_span .text-decimal{
+    opacity: 0.7;
 }
 
 .radius-left{
@@ -29,4 +32,16 @@ button.btn[disabled]{
 }
 .radius-right{
     border-radius: 0 10px 10px 0 ;
+}
+.div_value_span2{
+    font-size:0.8em;
+}
+.option_item .progline{
+    height:10px;
+    background: url(/images/progresscolor.png);
+    background-repeat: repeat-y;
+    background-size: 100%;
+}
+.option_item .badge.badge-success{
+    background-color: #4455ac!important;
 }

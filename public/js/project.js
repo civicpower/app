@@ -1,19 +1,24 @@
-;(function ($, window, document, undefined) {
-    var splash_sliding = false,
+;(function ($, window, document, _undefined) {
+    var tmr_resend = null,
+        splash_sliding = false,
         splash_zoom = 1;
     $(document).ready(function () {
         remove_old_cookies();
         bind_btn_disconnect();
         top_menu_spacer();
         bind_splash_screen();
+        bind_span_demo();
         setTimeout(function () {
             $("#init_hidden").removeClass("d-none");
             $(".small-box-menu-bottom").css("opacity", 1);
             $("body.nobg").removeClass("nobg");
         }, 150)
     });
-
-
+    function bind_span_demo() {
+        if(location.host=="app-demo.civicpower.io"){
+            $("#span-demo").removeClass("d-none");
+        }
+    }
     function remove_old_cookies() {
         civicpower_erase_cookie("user_token");
         civicpower_erase_cookie("user_token_last");
@@ -235,8 +240,8 @@ function api_call(action, mode, params, result_func) {
 }
 
 function civicpower_cookie_exists(name) {
-    var kooky = civicpower_get_cookie(name);
-    return typeof kooky != "undefined" && kooky !== null;
+    var cookie = civicpower_get_cookie(name);
+    return typeof cookie != "undefined" && cookie !== null;
 }
 
 function civicpower_set_cookie(name, value, days) {
@@ -363,7 +368,7 @@ Date.createFromMysql = function (mysql_string) {
     return result;
 }
 
-function cp_password_check(p) {
+function cp_password_check(p,p2) {
     var anUpperCase = /[A-Z]/;
     var aLowerCase = /[a-z]/;
     var aLetter = /[a-zA-Z]/;
@@ -396,6 +401,10 @@ function cp_password_check(p) {
         obj.result = false;
         obj.error = "Merci de choisir un mot de passe plus complexe.\nAu moins une lettre minuscule, une lettre majuscule, un caractère spécial et un chiffre.";
         return obj;
+    }else if(p!=p2){
+        obj.result = false;
+        obj.error = "Les 2 mots de passe sont différents. Merci de corriger";
+        return obj;
     }
     return obj;
 }
@@ -405,7 +414,6 @@ function cp_bind_btn_create_ballot(jsone) {
         typeof jsone.data.list == "object"
     ) {
         var list = jsone.data.list;
-        console.log(list);
         if (!list.password) {
             $("#link-new-ballot").attr("href", "#").on("click", function () {
                 cp_alert("Veuillez choisir un mot de passe pour pouvoir créer une consultation");
@@ -443,7 +451,6 @@ function cp_load_user_steps(user_token) {
                         "email": "/user-email",
                         "phone": "/user-phone",
                         "name": "/user-edit",
-                        // "address" : "/user-address",
                     };
                     for (var i in jsone.data.list) {
                         if (!jsone.data.list[i]) {
@@ -527,7 +534,14 @@ function cp_dispatch(user_token, mandatory, route_default, check_nb_login) {
     if (route_default == null || typeof route_default == 'undefined') {
         route_default = "/ballot-list";
     }
-    if (mandatory == null || typeof mandatory == 'undefined' || mandatory == "all") {
+    if(civicpower_cookie_exists("ballot_token")){
+        var bt = civicpower_get_cookie("ballot_token");
+        if(typeof bt == "string" && bt.length>0){
+
+            route_default = "/"+String(bt);
+        }
+    }
+    if (mandatory == null || typeof mandatory == 'undefined' || mandatory === "all") {
         mandatory = [
             "password",
             "city",
@@ -545,7 +559,7 @@ function cp_dispatch(user_token, mandatory, route_default, check_nb_login) {
             dispatch: true
         },
         function (jsone) {
-            if (jsone.status == "success") {
+            if (jsone.status === "success") {
                 if (jsone.data != null && typeof jsone.data != 'undefined' && Object.size(jsone.data) > 0) {
                     var list = jsone.data.list;
                     var route = route_default;
@@ -564,11 +578,9 @@ function cp_dispatch(user_token, mandatory, route_default, check_nb_login) {
                             route = "/user-email";
                         } else if (mandatory.indexOf("name") !== -1 && !list.name) {
                             route = "/user-edit";
-                            // } else if (mandatory.indexOf("address") !== -1 && !list.address) {
-                            //     route = "/user-address";
                         }
                     }
-                    if (route != "") {
+                    if (route !== "") {
                         if (!String(window.location).match(route)) {
                             window.location.replace(route);
                         }
@@ -600,3 +612,31 @@ function civicpower_is_mobile_phone(iti) {
         return iti.isValidNumber();
     }
 }
+function bind_resend_code_reset(suite) {
+    var $div = $("#timer-resend-code span");
+    var $div_outer = $("#div_resend_code");
+    var $div_button = $("button#btn_reset");
+    if(typeof suite == "undefined"){
+        $div_button.prop("disabled",true);
+        $div_outer.addClass("blocked");
+        $div.text(60);
+        tmr_resend = setTimeout(function () {
+            bind_resend_code_reset(true);
+        }, 1000);
+    }else{
+        var sec = parseInt($div.text());
+        sec--;
+        $div.text(sec);
+        if(sec===0){
+            clearTimeout(tmr_resend);
+            tmr_resend = null;
+            $div_outer.removeClass("blocked");
+            $div_button.prop("disabled",false);
+        } else {
+            tmr_resend = setTimeout(function () {
+                bind_resend_code_reset(true);
+            }, 1000);
+        }
+    }
+}
+

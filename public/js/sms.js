@@ -1,4 +1,4 @@
-;(function ($, window, document, undefined) {
+;(function ($, window, document, _undefined) {
     $(document).ready(function () {
         bind_init();
     });
@@ -21,7 +21,7 @@
                                 $("#inviter-name").text(data.user_firstname + " " + data.user_lastname);
                             }
                             if (typeof data.asker_token == "string" && data.asker_token.length > 0) {
-                                $("#custom-yes img.img-asker").attr("src", "https://" + String(BO_URL) + "/uploads/pp/" + String(data.asker_token) + ".png?rand=" + String(Math.random() * 9999) + "");
+                                $("#custom-yes img.img-asker").attr("src", "https://" + String(BO_URL) + "/uploads/pp/" + String(data.asker_token) + ".png?rand=" + String(Date.now()) + "");
                             } else {
                                 $("#custom-yes img.img-asker").remove();
                             }

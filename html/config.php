@@ -25,6 +25,9 @@ try {
     ');
     }
     $this->add_entete('
+        <meta name="twitter:card" content="summary_large_image">
+        <meta name="twitter:site" content="@civicpowerio">
+        <meta name="twitter:creator" content="@civicpowerio">
         <script type="text/javascript" src="/vendor/tarteaucitron/tarteaucitron.js"></script>
         <script type="text/javascript">
         tarteaucitron.init({

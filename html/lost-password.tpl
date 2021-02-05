@@ -27,7 +27,7 @@
                         </div>
                     </div>
                     <div id="error_div_outer">
-                        <div id="error_div" class="alert alert-danger py-1 text-center"></div>
+                        <div id="error_div" class="alert alert-warning py-1 text-center"></div>
                     </div>
                     <div class="text-center mb-3">
                         <button id="btn_send_code" type="submit" class="btn cp_button_red">Continuer</button>
@@ -55,10 +55,7 @@
                     <button type="submit" class="btn cp_button_red">Valider</button>
                 </div>
                 <div class="mb-4 mt-4 text-center">
-                    <button id="btn_reset" type="button" href="" class="btn btn-sm">
-                        Vous n'avez rien reçu ?<br/>
-                        <u>Renvoyer le code</u>
-                    </button>
+                    {include file="block-renvoyer-code.tpl"}
                 </div>
             </form>
         </div>

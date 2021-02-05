@@ -1,4 +1,4 @@
-;(function ($, window, document, undefined) {
+;(function ($, window, document, _undefined) {
     var timer_zipcode = null;
     var cur_zipcode = "";
     $(document).ready(function () {

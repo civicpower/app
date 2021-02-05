@@ -1,9 +1,7 @@
 <?php
-if(true){
-    ini_set('display_errors', 1);
-    ini_set('display_startup_errors', 1);
-    error_reporting(E_ALL);
-}
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 if (file_exists(str_replace("//", "/", $_SERVER['DOCUMENT_ROOT']."../"."fw/outils.php"))) {
 	// General tools
 		require_once(str_replace("//", "/", $_SERVER['DOCUMENT_ROOT']."../"."fw/outils.php"));

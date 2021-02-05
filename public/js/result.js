@@ -1,4 +1,4 @@
-;(function ($, window, document, undefined) {
+;(function ($, window, document, _undefined) {
     var page_ballot_token = 0;
     var page_shortcode = 0;
     $(document).ready(function () {
@@ -40,6 +40,7 @@
 
     function write_ballot(data) {
         if (data.length <= 0) {
+            window.location = "/404";
             return;
         }
         /****** CHECK ACTIVE *****/
@@ -105,8 +106,11 @@
                 }
                 $option_item.find(".option_title").html(o.option_title+str_voted);
                 $option_item.find(".option_description").text(o.option_description);
-                let prc_vote = nb_vote==0?0:parseFloat((o.option_nb_vote * 100)/nb_vote);
-                $option_item.find(".div_value_span").text(String(Math.round(prc_vote*100)/100)+"%");
+                let prc_vote_init = nb_vote==0?0:parseFloat((o.option_nb_vote * 100)/nb_vote);
+                let prc_vote = String(Math.floor(prc_vote_init*1000)/1000);
+                $option_item.find(".div_value_span").html(String(prc_vote.replace(/(\.\d\d)(\d+)/,"$1<small class='d-none text-decimal'>$2</small>"))+"%");
+                $option_item.find(".progline").css("background-size",String(prc_vote_init)+"%");
+                $option_item.find(".div_value_span2").html(String(o.option_nb_vote)+"");
                 if (o.option_nb_vote == "?") {
                     hide_results = true;
                 }

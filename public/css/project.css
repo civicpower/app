@@ -536,7 +536,7 @@ footer.bottom-footer {
     background-position: center;
     background-color: transparent;
     background-size: 110%;
-    border-size:0px;
+    border-width:0px;
     width: 50px;
     height: 50px;
     margin: 0 7px;
@@ -717,3 +717,29 @@ main.main-nobg #init_hidden{
     max-width: 50px;
 }
 
+#span-demo{
+    font-size: 2.5em;
+}
+
+.alert-warning{
+    background-color:#3f51b594!important;;
+    border-color:#3f51b594!important;;
+    color:#FFF!important;
+}
+
+#div_resend_code{
+
+}
+#div_resend_code.blocked{
+
+}
+#div_resend_code:not(.blocked) #timer-resend-code{
+    display: none;
+}
+#div_resend_code.blocked #timer-resend-code{
+
+}
+#div_resend_code.blocked #btn_reset{
+    cursor:not-allowed;
+    opacity: 0.3;
+}

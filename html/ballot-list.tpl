@@ -15,7 +15,7 @@
                 Résultats des consultations terminées
             {/if}
         </div>
-        <div class="no-vote d-none text-center civicpower-title1 alert alert-danger">
+        <div class="no-vote d-none text-center civicpower-title1 alert alert-warning">
             <span class="user-firstname"></span>
 
             {if $list_mode eq "ballot"}

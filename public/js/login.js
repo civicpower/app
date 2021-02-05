@@ -1,4 +1,4 @@
-;(function ($, window, document, undefined) {
+;(function ($, window, document, _undefined) {
     var subscribe_mode = "phone";
     $(document).ready(function () {
         first_focus();
@@ -106,6 +106,7 @@
                             $("#box-subscribe").slideUp("fast");
                             $("#box-confirm").slideDown("fast", function () {
                                 $("#input_phone_code").focus();
+                                bind_resend_code_reset();
                             });
                         }
                     } else {
@@ -167,7 +168,6 @@
         }
         return res;
     }
-
     function local_try_login() {
         var username = $("#input_username").val();
         var password = $("#input_password").val();
@@ -185,7 +185,7 @@
                         "post",
                         {
                             username: local_remove_space(username),
-                            password: password,
+                            password: sha1(password),
                         },
                         function (jsone) {
                             if (jsone.status == "success") {

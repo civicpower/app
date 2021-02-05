@@ -49,10 +49,7 @@
                             <button type="submit" class="btn cp_button_red">Valider</button>
                         </div>
                         <div class="mb-4 mt-4 text-center">
-                            <button id="btn_reset" type="button" href="" class="btn btn-sm">
-                                Vous n'avez rien reçu ?<br/>
-                                <u>Renvoyer le code</u>
-                            </button>
+                            {include file="block-renvoyer-code.tpl"}
                         </div>
                     </form>
                 </div>

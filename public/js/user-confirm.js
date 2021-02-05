@@ -1,4 +1,4 @@
-;(function ($, window, document, undefined) {
+;(function ($, window, document, _undefined) {
     $(document).ready(function () {
         check_user_logged(
             function (user_token, jsone) {
@@ -38,7 +38,7 @@
         var $item = null;
         for (var i in data) {
             $item = $("#ballot-stock .ballot-item:first").clone();
-            $item.find(".img-asker").attr("src","https://"+String(BO_URL)+"/uploads/pp/"+String(data[i].asker_token)+".png?rand="+String(Math.random()*9999)+"");
+            $item.find(".img-asker").attr("src","https://"+String(BO_URL)+"/uploads/pp/"+String(data[i].asker_token)+".png?rand="+String(Date.now())+"");
             $item.attr("data-ballot_token", data[i].ballot_token);
             $item.find(".ballot-asker_name").text(data[i].asker_name);
             $item.find(".ballot-title").text(data[i].ballot_title);

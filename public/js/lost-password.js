@@ -1,4 +1,4 @@
-;(function ($, window, document, undefined) {
+;(function ($, window, document, _undefined) {
     $(document).ready(function () {
         first_focus();
         check_user_logged(
@@ -45,6 +45,7 @@
                             $("#box-subscribe").slideUp("slow");
                             $("#box-confirm").slideDown("slow", function () {
                                 $("#input_phone_code").focus();
+                                bind_resend_code_reset();
                             });
                         }
                     } else {

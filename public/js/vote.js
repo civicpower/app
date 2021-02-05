@@ -1,4 +1,4 @@
-;(function ($, window, document, undefined) {
+;(function ($, window, document, _undefined) {
     var page_ballot_token = 0;
     var page_shortcode = 0;
     $(document).ready(function () {
@@ -21,17 +21,28 @@
                 cp_dispatch(user_token, [
                     "city",
                 ], "");
+                if(typeof data.data.steps.list.password != "undefined" && data.data.steps.list.password===false){
+                    civicpower_set_cookie("ballot_token",ballot_token)
+                    cp_alert("Veuillez choisir un mot de passe pour pouvoir participer à cette consultation");
+                    setTimeout(function(){
+                        window.location = "/user-password";
+                    },1500);
+                }
                 invoke_get_ballot(user_token);
                 bind_check_ballot();
                 bind_btn_confirm_vote();
                 $("#div-account-created").show();
+                setTimeout(function(){
+                    civicpower_erase_cookie("ballot_token");
+                },100);
             },
             function () {
                 invoke_get_ballot(null, function () {
                     cp_hide_logged_menu();
                     $("#div-create-account").slideDown("slow");
                 });
-            }
+            },
+            "get_user_info"
         );
     }
 
@@ -48,10 +59,10 @@
 
     function bind_btn_confirm_vote() {
         $("#btn-confirm-vote").on("click", function () {
-            if (all_questions_are_voted()) {
+            if (all_questions_are_voted(true)) {
                 save_votes();
             } else {
-                cp_alert("Merci de voter toutes les questions");
+                cp_alert("Merci de voter correctement à toutes les questions");
             }
         });
     }
@@ -85,7 +96,7 @@
         )
     }
 
-    function all_questions_are_voted() {
+    function all_questions_are_voted(show_errors) {
         var all_voted = true;
         $("#question_list .question_item").each(function () {
             var $question_item = $(this);
@@ -94,7 +105,7 @@
             var nb_vote_max = $question_item.attr("data-nb_vote_max");
             var nb_checked = $question_item.find(".input_option").filter(":checked").length;
             if (!(nb_checked >= nb_vote_min && nb_checked <= nb_vote_max)) {
-                if(nb_checked==1 && $question_item.find(".input_option").filter(":checked").first().attr("data-option_can_be_deleted")==0) {
+                if(nb_checked==1 && $question_item.find(".input_option").filter(":checked").first().attr("data-option_must_be_unique")==1) {
 
                 }else {
                     q_good = false;
@@ -102,9 +113,13 @@
                 }
             } else {
             }
-            if(!q_good && nb_checked>1){
-                $question_item.addClass("has_error");
-            }else {
+            if(show_errors) {
+                if (!q_good && nb_checked > 1) {
+                    $question_item.addClass("has_error");
+                } else {
+                    $question_item.removeClass("has_error");
+                }
+            }else{
                 $question_item.removeClass("has_error");
             }
         });
@@ -119,11 +134,15 @@
     }
 
     function check_option($option) {
-        var can_be_deleted = $option.attr("data-option_can_be_deleted") == 1;
-        var invert = can_be_deleted ? 0 : 1;
+        var must_be_unique = $option.attr("data-option_must_be_unique");
+        var invert = must_be_unique==1 ? 0 : 1;
         $option
             .closest(".option_list")
-            .find(can_be_deleted==0?".input_option[id!='"+String($option.attr("id"))+"']":"[data-option_can_be_deleted='"+String(invert)+"']")
+            .find(
+                must_be_unique==1
+                    ?".input_option[id!='"+String($option.attr("id"))+"']"
+                    :"[data-option_must_be_unique='"+String(invert)+"']"
+            )
             .prop("checked",false)
             .closest(".option_item")
             .removeClass("active");
@@ -135,10 +154,10 @@
             $btn_confirm.prop("disabled", false);
             $btn_confirm.hide();
         } else {
-            if (all_questions_are_voted()) {
-                $btn_confirm.prop("disabled", false);
+            if (all_questions_are_voted(false)) {
+                //$btn_confirm.prop("disabled", false);
             } else {
-                $btn_confirm.prop("disabled", true);
+                //$btn_confirm.prop("disabled", true);
             }
         }
     }
@@ -216,7 +235,14 @@
         $("#ballot_description").text(data.ballot_description);
         $("#ballot_engagement").text(data.ballot_engagement);
         /***** QUESTIONS ****/
-        var question_is_qcm=false, $option_elm = null, o = null, q = null, $question_item = null, $option_item = null, question_id = null, nb_participation_total = 0;
+        var question_is_qcm=false,
+            $option_elm = null,
+            o = null,
+            q = null,
+            $question_item = null,
+            $option_item = null,
+            question_id = null,
+            nb_participation_total = 0;
         for (var i in data.question_list) {
             q = data.question_list[i];
             question_id = q.question_id;
@@ -250,7 +276,7 @@
                 $option_item.attr("for","option_"+String(o.option_id));
                 $option_item.find(".input_option").attr("id","option_"+String(o.option_id));
                 $option_item.find(".option_title").attr("for","option_"+String(o.option_id));
-                $option_item.find(".input_option").attr("data-option_can_be_deleted",o.option_can_be_deleted);
+                $option_item.find(".input_option").attr("data-option_must_be_unique",o.option_can_be_disabled);
                 $option_item.find(".option_title").text(o.option_title);
                 $option_item.find(".option_description").text(o.option_description);
                 $option_elm = $option_item.find(".input_option");
