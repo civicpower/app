@@ -1,9 +1,7 @@
 <?php
 try {
     if (isset($this)) {
-        #$this->set_header_file('entete.tpl');
         $this->set_header_file($_ENV['HTML_ROOT'].'entete.tpl');
-        #$this->set_footer_file('piedpage.tpl');
         $this->set_footer_file($_ENV['HTML_ROOT'].'piedpage.tpl');
         $this->set_body_class('body_onlyphone nobg');
         $this->add_entete('<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />');
@@ -12,7 +10,7 @@ try {
         $this->add_entete('<meta property="og:locale" content="fr_FR" />');
         $this->add_entete('<meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">');
         $this->add_entete('<script type="text/javascript">var BO_URL = "' . $_ENV['BO_URL'] . '";</script>');
-        if (!isset($this->remove_search_header) || $this->remove_search_header == false) {
+        if (!isset($this->remove_search_header) || $this->remove_search_header === false) {
             $this->add_entete('
     <!--[if gte IE 9]>
       <style type="text/css">
@@ -30,6 +28,7 @@ try {
         <meta name="twitter:creator" content="@civicpowerio">
         <script type="text/javascript" src="/vendor/tarteaucitron/tarteaucitron.js"></script>
         <script type="text/javascript">
+        if(window.top == window.self){
         tarteaucitron.init({
           "privacyUrl": "https://www.civicpower.io/donnees-personnelles-app", /* Privacy policy url */
 
@@ -64,6 +63,7 @@ try {
 
           "mandatory": true, /* Show a message about mandatory cookies */
         });
+        }
         </script>
     ');
     }

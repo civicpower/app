@@ -2,7 +2,7 @@
 project_css_js($fw);
 $fw->include_css('user-password');
 $fw->include_js('user-password');
-$fw->add_js('sha1.min.js');
+$fw->add_js('sha256.js');
 $fw->include_css('label-placeholder');
 $fw->set_canonical('/user-password');
 $fw->smarty->assign('nobg',true);

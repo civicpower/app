@@ -47,7 +47,7 @@
                     "post",
                     {
                         token: user_token,
-                        password: sha1(password)
+                        password: sha256(password)
                     },
                     function (jsone) {
                         if (jsone.status === "success") {

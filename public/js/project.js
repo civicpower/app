@@ -414,6 +414,7 @@ function cp_bind_btn_create_ballot(jsone) {
         typeof jsone.data.list == "object"
     ) {
         var list = jsone.data.list;
+        console.log(list);
         if (!list.password) {
             $("#link-new-ballot").attr("href", "#").on("click", function () {
                 cp_alert("Veuillez choisir un mot de passe pour pouvoir créer une consultation");
